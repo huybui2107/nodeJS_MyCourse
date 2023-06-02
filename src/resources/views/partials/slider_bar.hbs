@@ -1,0 +1,50 @@
+<div class="col-lg-1  ">
+      <ul class="slider-bar_list slider-bar_position">
+        <li  class="slider-list_item">
+          <a href="/" class="slider-bar_item">
+            <span class="oi oi-home"></span>
+            <p class="slider_text">HOME</p>
+          </a>
+        </li>
+        {{#if isLogin }}
+            {{#if isAdmin}}
+
+        <li  class="slider-list_item">
+          <a href="/me/stored/courses " class="slider-bar_item">
+            <span class="oi oi-book"></span>
+            <p class="slider_text">Courses</p>
+          </a>
+        </li>
+        <li  class="slider-list_item">
+          <a href="/courses/create" class="slider-bar_item">
+            <span class="oi oi-data-transfer-upload"></span>
+            <p class="slider_text">Add Course</p>
+          </a>
+        </li>
+        <li  class="slider-list_item">
+          <a href="/me/stored/account" class="slider-bar_item">
+            <span class="oi oi-people"></span>
+            <p class="slider_text">User</p>
+          </a>
+        </li>
+              {{/if}}
+        {{/if}}
+
+        {{#if isLogin }}
+            {{#if isUser}}
+              
+        <li  class="slider-list_item">
+          <a href="/courses/mycourses" class="slider-bar_item">
+            <span class="oi oi-monitor"></span>
+            <p class="slider_text">My Course</p>
+          </a>
+        </li>
+            {{/if}}
+            
+         {{/if}} 
+
+
+        
+      </ul>
+      
+    </div>

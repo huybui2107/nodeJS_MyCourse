@@ -1,0 +1,63 @@
+<section class="vh-200">
+<form name="container-form" method="POST" action="/account/add">
+    <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5" style="font-weight: bold;">Register</h3>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label" style="    margin-right: 448px;">Name</label>
+    <input type="text" class="form-control form-control_css" id="name" name="name" placeholder="Hãy nhập tên " required>
+
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label" style="    margin-right: 448px;">Username</label>
+    <input type="text" class="form-control form-control_css" id="username" name="username" placeholder="Hãy điền username" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label" style="    margin-right: 448px;">Password</label>
+    <input type="password" class="form-control form-control_css" id="password" name="password" placeholder="Hãy điền password" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label" style="    margin-right: 362px;">Comfirm Password</label>
+    <input type="password" class="form-control form-control_css" id="confirm_pass" name="confirm_pass" placeholder="Hãy xác nhận password" required>
+  </div>
+  <div class="form-outline mb-4">
+  <label style="margin: 10px;
+                           margin-right: 298px;
+                           margin-bottom:10px
+                           color:red" id="confirm"></label></div>
+  <button type="submit"  class="btn btn-primary" style="padding: 6px 32px; background-color: #1dbfaf;border :none ; margin :20px" >Submit</button>
+</form>
+   </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+    const password = document.getElementById("password") 
+    const confirm_pass = document.getElementById("confirm_pass") 
+    const container_form = document.forms['container-form']
+    const dis_confirm = document.getElementById('confirm')
+    container_form.addEventListener('submit', function(e){
+        e.preventDefault();
+       if( password.value === confirm_pass.value){
+        console.log("confirm_pass")
+        container_form.submit();
+       }
+       else {
+        dis_confirm.innerHTML ='Mật khẩu không chính xác !' 
+       
+        
+        
+       
+        
+       }
+       
+         
+    }
+   )
+</script>

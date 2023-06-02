@@ -1,0 +1,158 @@
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: none !important;
+}
+li{
+    list-style: none;
+}
+.narbar-position{
+    
+    
+    position: fixed !important;
+    top: 0;
+     left: 0;
+    z-index: 1000;
+    width: 100%;
+    margin-bottom: 100px;
+      
+      
+}
+.slider-bar_position{
+    position: fixed !important;
+    z-index: 1000;
+    background: #ccc;
+    
+    
+}
+.slide{
+    width: 99%;
+    height: 300px !important;
+    margin-bottom: 20px;
+    margin-left: 4px;
+    border-radius: 10px;
+    
+}
+.img-slide {
+    height: 100% !important;
+    width: 100%;
+    
+    
+}
+.row-slide{
+    border-radius: 10px;
+}
+.line {
+    display: -webkit-box;
+    max-height: 3.2rem;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    line-height: 1.6rem;
+}
+.slider-bar{
+    
+        --width: 96px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        left: 0;
+        padding: 0 8px;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 74px;
+        width: var(--width);
+        z-index: 8;
+        
+    
+}
+.slider-bar_item{
+    align-items: center;
+    font-size: 25px;
+    border-radius: 16px;
+    color: #404040;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 72px;
+    justify-content: center;
+    margin-top: 4px;
+    width: 72px;
+    text-decoration: none;
+    
+}
+.slider-list_item{
+    background: #e8ebed;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.slider-bar_list{
+       /* background: #ccc; */
+       width: 96px;
+       align-items: center;
+       display: flex;
+       flex-direction: column;
+       flex-shrink: 0;
+       left: 0;
+       top: 64px;
+       width: var(--width);
+       z-index: 8;
+       padding: 20px;
+       height: 100%;
+       padding-right: 30px;
+}
+.slider_text{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 6px;
+}
+.slider-list_item:hover {
+    opacity: 0.5;
+} 
+.btn-login{
+    background-color: #F16239;
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 9px 20px;
+    position: absolute;
+    right: 22px;
+    top: 14px;
+    width: 100px;
+    text-align: center;
+    /* display: none; */
+}
+.btn-login:hover {
+    opacity: 0.5;
+}
+.login_form{
+    width: 50%;
+    height: 200px;
+}
+.bgr{
+    width: auto;
+    height: 77.55em;
+    background-image: linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),url(https://accounts.fullstack.edu.vn/static/media/f8_bg_auth_1920.b517075e98f3051de678.png);;
+}
+.form-control_css {
+    
+    font-size: 17px !important;
+    padding-top: 21px !important;
+    padding-bottom: 21px !important;
+}
+.detail_form{
+    /* width: 70%; */
+    
+   background-color: black;
+    
+
+}
+
+
+
+
+

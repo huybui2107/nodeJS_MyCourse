@@ -1,0 +1,53 @@
+
+
+<form action="/auth/login" method="POST">
+<section class="vh-100" >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h3 class="mb-5" style="font-weight: bold;">Sign in</h3>
+
+            <div class="form-outline mb-4">
+              <input type="text" id="username" name="username" class="form-control form-control-lg form-control_css"  placeholder="Username"/>
+               {{#if errors_user}}
+              {{#each errors_user}}
+              <label style="margin: 10px;
+                           margin-right: 383px;
+                           color:red" >{{error}}</label>
+                {{/each }}
+                {{/if}}
+            </div>
+
+            <div class="form-outline mb-4">
+              <input type="password" id="password" name="password" class="form-control form-control-lg form-control_css" placeholder="Password" />
+              {{#if errors_pass}}
+              {{#each errors_pass}}
+              <label style="margin: 10px;
+                           margin-right: 352px;
+                           color:red">{{error}}</label>
+                {{/each }}
+                {{/if}}
+            </div>
+
+            <!-- Checkbox -->
+            
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit" style="    background-color: #1dbfaf;border :none">Login</button>
+            <div class="form-check d-flex justify-content-start mb-4">
+              
+              <label class="form-check-label" for="form1Example3" style="font-size:18px ; margin-top:15px"> Bạn chưa có tài khoản ? </label>
+              <a href="/auth/register" style="font-size: 18px; margin-top:15px ; margin-left:5px ; color :#f05123">Đăng Ký</a>
+            </div>
+            <hr class="my-4">
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>

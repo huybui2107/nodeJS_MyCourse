@@ -1,0 +1,115 @@
+<div style="left: 204px;
+    top: 72px;
+    flex: 0 0 auto;
+    width: 80%;
+    position: absolute;">
+  <form name="container-form" method="POST" class="mt-4" action="/courses/handle-form-action">
+  <div>
+    <h3>My Users</h3>
+    <a href="/me/trash/courses">TRASH ({{deleteCount}})</a>
+    <div class="mt-4 d-flex align-items-center">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="checkbox-all"
+        />
+        <label class="form-check-label" for="checkbox-all">
+          select All
+        </label>
+      </div>
+      <select
+        class="form-select form-select-sm"
+        aria-label="Default select example"
+        name="action"
+        required="required"
+      >
+        <option value="" >-- Chọn hành động --</option>
+        <option value="delete">Xóa</option>
+     
+      </select>
+      <button class="btn btn-primary btn-sm disabled btn-checked-all">Thực hiện</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">
+          Name
+          {{{  sortable 'name' _sort }}}
+          </th>
+        <th scope="col">Số điện thoại</th>
+        <th scope="col">Thời gian tạo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each accounts}}
+        <tr>
+          {{!-- <th><div class="form-check"> --}}
+        {{!-- <input class="form-check-input" type="checkbox" value="{{this._id}}" name="coursesIds[]" id="flexCheckDefault"/></th> --}}
+          <td scope="row">{{sum @index 1}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.sdt}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>
+            <a href="/courses/{{this._id}}/edit" class="btn btn-light">Edit</a>
+          </td>
+          <td>
+            <a
+              href=""
+              class="btn btn-light"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteCourse"
+              data-id="{{this._id}}"
+            >Delete</a>
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="5" class="text-center">Bạn chưa đăng khóa học nào.
+            <a href="/courses/create"></a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
+</div>
+{{!  }}
+<form name="delete-form" method="POST"></form>
+{{! confirm xóa }}
+<div
+  class="modal fade"
+  id="deleteCourse"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa khóa học ?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa khóa học này ?
+      </div>
+      <div class="modal-footer">
+        <button id="btn_delete" type="button" class="btn btn-danger">Xóa bỏ</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Hủy</button>
+
+      </div>
+    </div>
+  </div>
+</div>
