@@ -2,6 +2,7 @@ const Account = require('../models/Account');
 
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongose');
 const { request, response } = require('express');
+const account = require('../models/Account');
 
  AccountController = {
     AddAccount: async (req, res, next) => {
@@ -86,6 +87,38 @@ const { request, response } = require('express');
          } catch (error) {
              
          }
+    },
+    edit : async(req, res) => {
+        // Course.findById(req.params.id)
+        //     .then(course => res.render('courses/edit', {
+        //         course: mongooseToObject(course),
+        //         isLogin : true,
+        //         isAdmin : true,
+        //         Name : req.session.admin_infor
+        //     }))
+        //     .catch(next)
+        try {
+            const account = await Account.findById(req.params.id);
+            res.render('account/edit', {
+                        account: mongooseToObject(account),
+                        isLogin : true,
+                        isAdmin : true,
+                        Name : req.session.admin_infor
+                    })
+          
+      
+        } catch (error) {
+            
+        }
+
+    },
+    update :async (req, res) => {
+            try {
+                await Account.updateOne({_id:req.params.id},req.body);
+                res.redirect('/me/stored/account')
+            } catch (error) {
+                
+            }
     }
 }
 

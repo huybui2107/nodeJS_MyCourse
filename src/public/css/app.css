@@ -151,8 +151,22 @@ li{
     
 
 }
+.form-select{
+    display: flex;
+    align-items: center;
+}
 
+.checkbox :active {
+    border: none;
+    outline: none;
+}
 
-
-
-
+.edit_form{
+    background-color: #CCC;
+    width: 600px;
+    position: absolute;
+    left: 37%;
+    padding: 33px;
+    top: 251px;
+    border-radius: 20px;
+}

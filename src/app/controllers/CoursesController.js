@@ -58,7 +58,10 @@ class CourseController {
     edit(req, res, next) {
         Course.findById(req.params.id)
             .then(course => res.render('courses/edit', {
-                course: mongooseToObject(course)
+                course: mongooseToObject(course),
+                isLogin : true,
+                isAdmin : true,
+                Name : req.session.admin_infor
             }))
             .catch(next)
 

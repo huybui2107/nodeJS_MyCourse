@@ -5,21 +5,26 @@
     position: absolute;">
   <form name="container-form" method="POST" class="mt-4" action="/courses/handle-form-action">
   <div>
-    <h3>My Courses</h3>
-    <a href="/me/trash/courses">TRASH ({{deleteCount}})</a>
-    <div class="mt-4 d-flex align-items-center">
-      <div class="form-check">
+    <h3 style="margin-left: 45%; font-weight:bold;">ALL COURSES</h3>
+    
+    <div class="mt-4 d-flex align-items-center" style="margin-bottom: 44px;">
+      <div class="form-check" style="font-size: 19px;">
         <input
           class="form-check-input"
           type="checkbox"
           value=""
           id="checkbox-all"
         />
-        <label class="form-check-label" for="checkbox-all">
-          select All
+        <label class="form-check-label" for="checkbox-all" style="width: 86px;
+    margin-left: 3px;
+    font-size: 19px;">
+          Select All
         </label>
       </div>
-      <select
+      
+        <select style="font-size: 15px;
+    margin-left: 50px;
+    margin-right: 113px;"
         class="form-select form-select-sm"
         aria-label="Default select example"
         name="action"
@@ -29,20 +34,23 @@
         <option value="delete">Xóa</option>
      
       </select>
-      <button class="btn btn-primary btn-sm disabled btn-checked-all">Thực hiện</button>
+      
+      <button class="btn btn-primary btn-sm disabled btn-checked-all" style="width: 133px;">Thực hiện</button>
     </div>
   </div>
   <table class="table">
     <thead>
       <tr>
-        <th></th>
-        <th scope="col">#</th>
+        <th>#</th>
+        <th scope="col">STT</th>
         <th scope="col">
           Tên khóa học
           {{{  sortable 'name' _sort }}}
           </th>
         <th scope="col">VideoID</th>
         <th scope="col">Thời gian tạo</th>
+        <th scope="col">Chỉnh sửa</th>
+        <th scope="col">Xóa</th>
       </tr>
     </thead>
     <tbody>
@@ -77,6 +85,10 @@
     </tbody>
   </table>
 </form>
+<div style="float: right;margin-top: 20px;">
+  <span class="oi oi-trash" style="font-size: 25px;"></span>
+  <a href="/me/trash/courses" style=" color: #000;">TRASH ({{deleteCount}})</a>
+</div>
 </div>
 {{!  }}
 <form name="delete-form" method="POST"></form>

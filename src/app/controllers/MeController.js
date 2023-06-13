@@ -1,7 +1,8 @@
 const Course = require('../models/Course');
-
+const Account = require('../models/Account');
 const {mutipleMongooseToObject}  = require('../../util/mongose');
 const { request } = require('express');
+const account = require('../models/Account');
 class MeController {
 
     //[get] /course/slug
@@ -43,11 +44,29 @@ class MeController {
     }
     //[get] /me/trash/course
     trashCourses(req, res, next) {
+        if(req.session.admin_id){
         Course.findDeleted({deleted: true})
             .then(courses => res.render('me/trash-courses',{
-                courses : mutipleMongooseToObject(courses)
+                courses : mutipleMongooseToObject(courses),
+                isLogin : true,
+                isAdmin : true,
+                Name : req.session.admin_infor
             }))
             .catch(next)
+        }
+        
+    }
+    trashUser(req, res, next) {
+        if(req.session.admin_id){
+            Account.findDeleted({deleted: true})
+            .then(account => res.render('me/trash_user',{
+                account : mutipleMongooseToObject(account),
+                isLogin : true,
+                isAdmin : true,
+                Name : req.session.admin_infor
+            }))
+            .catch(next)
+        }
         
     }
 

@@ -1,0 +1,39 @@
+<div class="mt-4" style="left: 204px;
+    top: 72px;
+    flex: 0 0 auto;
+    width: 80%;
+    position: absolute;
+    back">
+  <h3 style="margin-left: 50%;
+    font-weight: bold;">SỬA THÀNH VIÊN</h3>
+  <form action="/account/{{account._id}}?_method=PUT" method="POST" style="    width: 50%;
+    margin-left: 32%;
+    margin-top: 50px;">
+  <div class="mb-3">
+      <label for="name" class="form-label">Tên</label>
+      <input
+        type="text"
+        class="form-control"
+        value="{{account.name}}"
+        id="name"
+        name="name"
+        placeholder=""
+      />
+    </div>
+    <div class="mb-3">
+      <label for="sdt" class="form-label">Số điện thoại</label>
+      <input
+        type="text"
+        class="form-control"
+        value="{{account.sdt}}"
+        id="sdt"
+        name="sdt"
+        placeholder=""
+      />
+    </div>
+    <button type="submit" class="btn btn-primary" style="width: 102px;
+    margin-left: 40%;
+    margin-top: 19px;">SAVE</button>
+  </form>
+
+</div>
