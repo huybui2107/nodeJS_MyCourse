@@ -69,8 +69,8 @@
             <a
               href=""
               class="btn btn-light"
-              data-bs-toggle="modal"
-              data-bs-target="#deleteCourse"
+              data-toggle="modal"
+              data-target="#deleteCourse"
               data-id="{{this._id}}"
             >Delete</a>
           </td>
@@ -119,7 +119,7 @@
         <button
           type="button"
           class="btn btn-secondary"
-          data-bs-dismiss="modal"
+          data-dismiss="modal"
         >Hủy</button>
 
       </div>
@@ -131,10 +131,14 @@
   var checkboxItems = document.querySelectorAll('input[name="coursesIds[]"]')
   var btn_checkboxAll = document.querySelector('.btn-checked-all')
   var container_form = document.forms['container-form']
-  document.addEventListener("DOMContentLoaded", function(){ var courseID; var
-  deleteForm = document.forms['delete-form']
-  $('#deleteCourse').on('shown.bs.modal', function(e){ var btn
-  =$(e.relatedTarget); courseID = btn.data('id'); })
+  document.addEventListener("DOMContentLoaded", function(){ 
+    var courseID; 
+    var deleteForm = document.forms['delete-form']
+  $('#deleteCourse').on('shown.bs.modal', function(e){ 
+    var btn=$(e.relatedTarget); 
+    courseID = btn.data('id');
+    console.log(courseID) }
+  )
   document.getElementById('btn_delete').addEventListener('click', function(){
   deleteForm.action ='/courses/'+courseID+'?_method=DELETE';
   deleteForm.submit(); }) })

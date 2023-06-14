@@ -3,7 +3,7 @@
     flex: 0 0 auto;
     width: 80%;
     position: absolute;">
-  <form name="container-form" method="POST" class="mt-4" action="/courses/handle-form-action">
+  <form name="container-form" method="POST" class="mt-4" action="/account/handle-form-action">
   <div>
     <h3 style="margin-left: 45%; font-weight:bold;">ALL USERS</h3>
     
@@ -57,7 +57,7 @@
         <tr>
           <th>
             <div class="form-check">
-            <input class="form-check-input checkbox" type="checkbox" value="{{this._id}}" name="coursesIds[]" id="flexCheckDefault"/>
+            <input class="form-check-input checkbox" type="checkbox" value="{{this._id}}" name="accountIds[]" id="flexCheckDefault"/>
           </th>
           <td scope="row">{{sum @index 1}}</td>
           <td>{{this.name}}</td>
@@ -70,15 +70,15 @@
             <a
               href=""
               class="btn btn-light"
-              data-bs-toggle="modal"
-              data-bs-target="#deleteCourse"
+              data-toggle="modal"
+              data-target="#deleteAccount"
               data-id="{{this._id}}"
             >Delete</a>
           </td>
         </tr>
       {{else}}
         <tr>
-          <td colspan="5" class="text-center">Bạn chưa đăng khóa học nào.
+          <td colspan="5" class="text-center">Bạn chưa có người dùng nào.
             <a href="/courses/create"></a>
           </td>
         </tr>
@@ -88,7 +88,7 @@
 </form>
 <div style="float: right;margin-top: 20px;">
   <span class="oi oi-trash" style="font-size: 25px;"></span>
-  <a href="/me/trash/user" style=" color: #000;">TRASH (0)</a>
+  <a href="/me/trash/user" style=" color: #000;">TRASH ({{deleteaccount}})</a>
 </div>
 </div>
 {{!  }}
@@ -96,7 +96,7 @@
 {{! confirm xóa }}
 <div
   class="modal fade"
-  id="deleteCourse"
+  id="deleteAccount"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -120,10 +120,71 @@
         <button
           type="button"
           class="btn btn-secondary"
-          data-bs-dismiss="modal"
+          data-dismiss="modal"
         >Hủy</button>
 
       </div>
     </div>
   </div>
 </div>
+<script >
+
+
+// Xóa mềm
+  document.addEventListener("DOMContentLoaded", function(){ 
+    var ID; 
+    var deleteForm = document.forms['delete-form']
+  $('#deleteAccount').on('shown.bs.modal', function(e){ 
+    var btn=$(e.relatedTarget); 
+    ID = btn.data('id');
+}
+  )
+  document.getElementById('btn_delete').addEventListener('click', function(){
+  deleteForm.action ='/account/'+ID+'?_method=DELETE';
+  deleteForm.submit(); }) })
+ 
+// chọn nhiều lượt để xóa
+  var checkboxAll = document.getElementById('checkbox-all');
+  var checkboxItems = document.querySelectorAll('input[name="accountIds[]"]')
+  var btn_checkboxAll = document.querySelector('.btn-checked-all')
+  var container_form = document.forms['container-form']
+  checkboxAll.onchange  = () => {
+    var isChecked = checkboxAll.checked;
+    checkboxItems.forEach( (item) => {
+        item.checked = isChecked;
+        renderCheckAllSubmitBtn()
+       }) 
+  }
+  checkboxItems.forEach( (item) => {
+        item.onchange = () => {
+           var isCheckAll = checkboxItems.length === $('input[name="accountIds[]"]:checked').length;
+           checkboxAll.checked = isCheckAll;
+           renderCheckAllSubmitBtn()
+          
+        }
+       })
+  function renderCheckAllSubmitBtn() {
+      var checkedCount =$('input[name="accountIds[]"]:checked').length;
+      console.log(checkedCount)
+      if(checkedCount > 0 ){
+        btn_checkboxAll.classList.remove('disabled')
+      }
+      else{
+        btn_checkboxAll.classList.add('disabled')
+      }
+   }
+   // bam btn thuc hien
+   btn_checkboxAll.onclick = function(e){
+   e.preventDefault();
+    var isSubmitable = !btn_checkboxAll.classList.contains('disabled');
+    if(isSubmitable){
+      container_form.submit();
+    }
+   }
+   container_form.addEventListener('submit', function(e){
+     var isSubmitable = !btn_checkboxAll.classList.contains('disabled');
+    if(!isSubmitable){
+      e.preventDefault();
+    }
+   })
+</script>

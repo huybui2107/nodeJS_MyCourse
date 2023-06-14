@@ -103,6 +103,7 @@ class CourseController {
                 res.json({ message: 'Action not allowed' })
         }
     }
+    
     handleTrashFormAction(req, res, next) {
         switch (req.body.action) {
             case 'delete':

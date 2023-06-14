@@ -65,6 +65,7 @@ class MeController {
                 isAdmin : true,
                 Name : req.session.admin_infor
             }))
+            
             .catch(next)
         }
         

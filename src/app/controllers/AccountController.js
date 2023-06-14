@@ -38,8 +38,10 @@ const account = require('../models/Account');
     ShowListAccount : async (req, res) =>{
          if(req.session.admin_id){
             try {
-                let user =await Account.find({});
-                res.render('account/show',{
+                let accountQuery = await Account.find({});
+                const [user, deleteaccount] =await Promise.all([accountQuery, Account.countDocumentsDeleted()]);
+                res.render('me/stored_user',{
+                    deleteaccount,
                 accounts: mutipleMongooseToObject(user),
                 isLogin : true,
                 isAdmin : true,
@@ -119,6 +121,47 @@ const account = require('../models/Account');
             } catch (error) {
                 
             }
+    },
+    // xoa mem
+    delete :async (req, res) => {
+            await Account.delete({_id:req.params.id});
+            res.redirect('back');
+    },
+    //[patch] /course/:id/restore
+    restore : async (req, res, next) => {
+       await Account.restore({ _id: req.params.id })
+             res.redirect('back')
+           
+    },
+    //[delete] /course/:id/force
+    destroy : async(req, res, next) => {
+        await Account.deleteOne({ _id: req.params.id })
+            res.redirect('back')
+            
+    },
+    handleFormAction : async (req, res, next) => {
+        switch (req.body.action) {
+            case 'delete':
+               await Account.delete({ _id: { $in: req.body.accountIds } })
+               res.redirect('back')   
+                break;
+            default:
+                res.json({ message: 'Action not allowed' })
+        }
+    },
+    handleTrashFormAction : async (req, res, next)  => {
+        switch (req.body.action) {
+            case 'delete':
+                await Account.deleteOne({ _id: { $in: req.body.accountIds } })
+                res.redirect('back')     
+                break;
+            case 'restore':
+                await  Account.restore({ _id: { $in: req.body.accountIds } })
+                res.redirect('back')
+                break;
+            default:
+                res.json({ message: 'Action not allowed' })
+        }
     }
 }
 
